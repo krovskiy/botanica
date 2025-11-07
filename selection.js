@@ -2,6 +2,7 @@ let isSelecting = false;
 let startX, startY;
 let $selectionBox;
 let $previewContainer;
+let containerRect;
 
 $(document).ready(function() {
   const $preview = $("#preview");
@@ -11,19 +12,27 @@ $(document).ready(function() {
     .attr("id", "selection-box")
     .css({
       position: "absolute",
-      border: "2px dashed #0066cc",
+      border: "3px dashed #0066cc",
       backgroundColor: "rgba(0, 102, 204, 0.1)",
       display: "none",
       zIndex: "1000",
       pointerEvents: "none"
     });
+  $previewContainer.css("position", "relative");
   $previewContainer.append($selectionBox);
   $previewContainer.on("mousedown", function(e) {
     if (!$preview.attr("src")) return;
+    
+    if (isSelecting) {
+      isSelecting = false;
+      return;
+    }
     isSelecting = true;
-    const rect = $previewContainer[0].getBoundingClientRect();
-    startX = e.clientX - rect.left;
-    startY = e.clientY - rect.top;
+    containerRect = $previewContainer[0].getBoundingClientRect();
+    startX = e.clientX - containerRect.left;
+    startY = e.clientY - containerRect.top;
+    startX = Math.max(0, Math.min(startX, containerRect.width));
+    startY = Math.max(0, Math.min(startY, containerRect.height));
     $selectionBox.css({
       display: "block",
       left: startX + "px",
@@ -34,9 +43,10 @@ $(document).ready(function() {
   });
   $(document).on("mousemove", function(e) {
     if (!isSelecting) return;
-    const rect = $previewContainer[0].getBoundingClientRect();
-    const currentX = e.clientX - rect.left;
-    const currentY = e.clientY - rect.top;
+    let currentX = e.clientX - containerRect.left;
+    let currentY = e.clientY - containerRect.top;
+    currentX = Math.max(0, Math.min(currentX, containerRect.width));
+    currentY = Math.max(0, Math.min(currentY, containerRect.height));
     const width = Math.abs(currentX - startX);
     const height = Math.abs(currentY - startY);
     const left = Math.min(startX, currentX);
@@ -47,9 +57,6 @@ $(document).ready(function() {
       width: width + "px",
       height: height + "px"
     });
-  });
-  $(document).on("mouseup", function() {
-    isSelecting = false;
   });
   $cropButton.on("click", function() {
     const rect = $selectionBox[0].getBoundingClientRect();
@@ -85,6 +92,6 @@ function cropImage(x, y, width, height) {
     a.download = "screenshot_cropped.png";
     a.click();
   };
-
+  
   img.src = $preview.attr("src");
 }
