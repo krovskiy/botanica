@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- remove these or change once release -->
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: sans-serif;
+      padding: 10px;
+      width: 800px;
+      height: 600px;
+      background: #f5f5f5;
+    }
+    
+    #preview {
+      max-width: 80%;
+      max-height: 80%;
+      object-fit: contain;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="controls">
+    <button id="screenshot">Take Screenshot</button>
+    <button id="crop-button">Crop & Download</button>
+    <h1>drag and crop the part of the image u want!</h1>
+  </div>
+  
+  <div class="preview-container">
+    <img id="preview">
+    <div id="selection-tool"></div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="popup.js"></script>
+  <script src="Selection.js"></script>
+</body>
+</html>
