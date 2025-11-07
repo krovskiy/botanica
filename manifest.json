@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "botanica",
-  "version": "0.1a",
+  "version": "0.1",
   "description": "Take high-quality QHD screenshots with Chrome DevTools for printing, PDFs, or presentations!",
   "permissions": [
     "activeTab",
