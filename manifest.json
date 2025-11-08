@@ -11,10 +11,19 @@
     "tabs"
   ],
   "action": {
-    "default_popup": "popup.html",
+    "default_popup": "botanica/botanica.html",
     "default_title": "botanica"
   },
   "host_permissions": [
   "<all_urls>"
-]
+],
+"commands": {
+    "open-extension": {
+      "suggested_key": {
+        "default": "Alt+B",
+        "mac": "Alt+B"
+      },
+      "description": "Open the extension screenshot"
+    }
+  }
 }
