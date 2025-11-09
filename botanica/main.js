@@ -12,7 +12,7 @@
       height: 2160,
       deviceScaleFactor,
       mobile: false,
-      scale: 1
+      scale: 0.8
     });
 
     await new Promise(resolve => setTimeout(resolve, 500));
