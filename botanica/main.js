@@ -1,7 +1,7 @@
   document.getElementById("screenshot").addEventListener("click", async () => {
     const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
-    const deviceScaleFactor = 3;
+    const deviceScaleFactor = 2;
 
     await chrome.debugger.attach({ tabId: tab.id }, "1.3");
 

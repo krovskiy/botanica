@@ -88,8 +88,11 @@ button:active {
 }
 
 .bgrd-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: #44475a;
-  padding: 5px 6px;
+  padding: 5px;
   border-radius: 6px;
   margin-top: 10px;
   transition: transform 0.2s ease;
