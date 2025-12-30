@@ -8,22 +8,22 @@
     await chrome.debugger.sendCommand({ tabId: tab.id }, "Page.enable");
 
     await chrome.debugger.sendCommand({ tabId: tab.id }, "Emulation.setDeviceMetricsOverride", {
-      width: 4096,
-      height: 2160,
-      deviceScaleFactor,
+      width: 1920,
+      height: 1080,
+      deviceScaleFactor: 5,
       mobile: false,
-      scale: 0.8
+      scale: 1
     });
 
     await new Promise(resolve => setTimeout(resolve, 500));
 
     const screenshot = await chrome.debugger.sendCommand({ tabId: tab.id }, "Page.captureScreenshot", {
-      format: "png"
+      format: "png",
+      captureBeyondViewport: true
     });
     const container = document.getElementById("preview");
 
     container.src = "data:image/png;base64," + screenshot.data;
-
 
     await chrome.debugger.sendCommand({ tabId: tab.id }, "Emulation.clearDeviceMetricsOverride");
     await chrome.debugger.detach({ tabId: tab.id });
