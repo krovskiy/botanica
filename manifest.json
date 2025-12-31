@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "botanica",
-  "version": "0.5",
-  "description": "Take high-quality QHD screenshots with Chrome DevTools for printing, PDFs, or presentations!",
+  "version": "0.8",
+  "description": "Take high-quality QHD screenshots with Chrome DevTools!",
   "permissions": [
     "activeTab",
     "debugger",
@@ -13,6 +13,9 @@
   "action": {
     "default_popup": "botanica/botanica.html",
     "default_title": "botanica"
+  },
+  "background": {
+    "service_worker": "background.js"
   },
   "host_permissions": [
   "<all_urls>"
@@ -25,5 +28,11 @@
       },
       "description": "Open the extension screenshot"
     }
+  },
+  "icons": {
+    "16": "botanica/icons/icon16.png",
+    "32": "botanica/icons/icon32.png",
+    "48": "botanica/icons/icon48.png",
+    "128": "botanica/icons/icon128.png"
   }
 }
